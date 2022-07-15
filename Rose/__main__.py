@@ -31,9 +31,9 @@ app = Client(
     session_name='Rotomgram'
 )
 
-texts = json.load(open('src/texts.json', 'r'))
-data = json.load(open('src/pkmn.json', 'r'))
-stats = json.load(open('src/stats.json', 'r'))
+texts = json.load(open('Rose/texts.json', 'r'))
+data = json.load(open('Releases/pkmn.json', 'r'))
+stats = json.load(open('Rose/stats.json', 'r'))
 
 usage_dict = {'vgc': None}
 raid_dict = {}
