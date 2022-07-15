@@ -22,7 +22,7 @@ import random
 import json
 import re
 
-from pyrogram import Client, Filters
+from pyrogram import Client, filters
 from pyrogram import InlineKeyboardMarkup, InlineKeyboardButton
 
 import functions as func
