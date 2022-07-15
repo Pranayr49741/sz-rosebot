@@ -3,7 +3,7 @@ import re
 import urllib
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from bs4 import BeautifulSoup4
+from bs4 import BeautifulSoup
 
 
 texts = json.load(open('src/texts.json', 'r'))
