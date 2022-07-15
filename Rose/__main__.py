@@ -247,7 +247,7 @@ async def spem(client, message):
           text="//hexamatch 1000 10"
        )
 
-@app.on_callback_query(filters.regex("startcq"))
+@ap.on_callback_query(filters.regex("startcq"))
 @languageCB
 async def startcq(client,CallbackQuery, _):
     served_chats = len(await get_served_chats())
