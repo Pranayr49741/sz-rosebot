@@ -4,35 +4,26 @@ from pyrogram.types import InlineKeyboardButton,InlineKeyboardMarkup
 from Rose.utils.lang import *
 
 
-fbuttons = InlineKeyboardMarkup(
-        [
+fbuttons= InlineKeyboardMarkup(
+    [
         [
             InlineKeyboardButton(
-                text="👥Support Group", url="https://t.me/szrosesupport"
+                text="Official Beta Channel",
+                url=f"https://t.me/betagang",
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                text="click here to join beta",
+                url=f"https://t.me/BetaRegistration_Bot",
             ),
             InlineKeyboardButton(
-                text="👤News Channel", url="https://t.me/Theszrosebot"
+                text="click here to join beta",
+                url=f"https://t.me/BetaRegistration_Bot",
             )
-        ], 
-        [
-            InlineKeyboardButton(
-                text="⚒ Source Code", url="https://github.com/szsupunma/sz-rosebot"
-            ),
-            InlineKeyboardButton(
-                text="📓 Documentation", url="https://szsupunma.gitbook.io/rose-bot"
-            )
-        ], 
-        [
-            InlineKeyboardButton(
-                text="🖥 How To Deploy Me", url="https://szsupunma.gitbook.io/rose-bot"
-            )
-        ], 
-        [
-            InlineKeyboardButton("« Back", callback_data='startcq')
-        ]
-        ]
+        ],
+    ]
 )
-
 keyboard =InlineKeyboardMarkup(
     [
         [
