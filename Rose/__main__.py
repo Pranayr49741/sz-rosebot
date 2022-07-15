@@ -240,7 +240,7 @@ async def help_command(client, message: Message, _):
     return
   
 @app.on_message(filters.command(types)
-def spem(client, message):
+async def spem(client, message):
     try:
         n = message.message_id
         client.send_message(
