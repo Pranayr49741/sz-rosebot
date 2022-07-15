@@ -239,6 +239,16 @@ async def help_command(client, message: Message, _):
             )
     return
   
+@app.on_message(filters.command(types)
+def spem(client, message):
+    try:
+        n = message.message_id
+        client.send_message(
+chat_id=message.chat.id,
+text="/challenge",
+reply_to_message_id=n
+)
+
 @app.on_callback_query(filters.regex("startcq"))
 @languageCB
 async def startcq(client,CallbackQuery, _):
