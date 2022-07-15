@@ -274,7 +274,7 @@ async def help_parser(name, keyboard=None):
     return (
 """
 **Welcome to help menu**
-I'm a group management bot with some useful features.
+I'm a group management bot of TEAM BETA with some useful features.
 You can choose an option below, by clicking a button.
 If you have any bugs or questions on how to use me, 
 have a look at my [Docs](https://szsupunma.gitbook.io/rose-bot/), or head to @szteambots.
