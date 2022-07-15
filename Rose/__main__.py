@@ -97,23 +97,13 @@ home_keyboard_pm = InlineKeyboardMarkup(
                 url=f"https://t.me/BetaRegistration_Bot",
             ),
             InlineKeyboardButton(
-                text="🔰News Channel",
-                url=f"https://t.me/szroseupdates",
+                text="click here to join beta",
+                url=f"https://t.me/BetaRegistration_Bot",
             )
         ],
     ]
 )
 
-keyboard = InlineKeyboardMarkup(
-    [
-        [
-            InlineKeyboardButton(
-                text="📚 Commands & help",
-                url=f"t.me/{BOT_USERNAME}?start=help",
-            )
-        ]
-    ]
-)
 
 IMG = ["https://telegra.ph/file/c8f5c1dd990ca9a3d8516.jpg",
        "https://telegra.ph/file/77cc3154b752ce822fd52.jpg",
@@ -266,12 +256,13 @@ async def startcq(client,CallbackQuery, _):
             text=f"""
 👋 Hey there {CallbackQuery.from_user.mention}, 
 
-   My name is Rose ,an  advanced telegram Group management Bot For help 
-You Protect Your Groups & Suit For All Your Needs. 
-I currently manage about `{len(served_chats)}` groups.I have over `{len(served_users)}` users
+   ✪ Hey, I'm Team Beta Bot!
+I'm a group management bot and i will help you with the information related to Beta!
+✪ Must read the ABOUT Section Below
 
- ⚒ Send Me /help For Get Commands. 
-👨‍💻Dᴇᴠᴇʟᴏᴘᴇʀ : @supunma
+
+⚒ Send Me /help For Get Commands. 
+👨‍💻Dᴇᴠᴇʟᴏᴘᴇʀ : @bunny_2021
 """,
             disable_web_page_preview=True,
             reply_markup=home_keyboard_pm)
@@ -290,14 +281,6 @@ have a look at my [Docs](https://szsupunma.gitbook.io/rose-bot/), or head to @sz
 **All commands can be used with the following: / **""",
         keyboard,
     )
-
-@app.on_message(filters.command("ads"))
-async def ads_message(_, message):
-	await app.forward_messages(
-		chat_id = message.chat.id, 
-		from_chat_id = int(-1001356358215), 
-		message_ids = 2255,
-	)
 
 @app.on_callback_query(filters.regex("bot_commands"))
 @languageCB
@@ -328,7 +311,7 @@ async def help_button(client, query, _):
                 "Here is the help for", HELPABLE[module].__MODULE__
             )
             + HELPABLE[module].__HELP__
-            + "\n👨‍💻Dᴇᴠᴇʟᴏᴘᴇʀ : @supunma"
+            + "\n👨‍💻Dᴇᴠᴇʟᴏᴘᴇʀ : @bunny_2021"
         )
         if hasattr(HELPABLE[module], "__helpbtns__"):
                        button = (HELPABLE[module].__helpbtns__) + [[InlineKeyboardButton("« Back", callback_data="bot_commands")]]
