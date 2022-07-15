@@ -239,12 +239,12 @@ async def help_command(client, message: Message, _):
             )
     return
   
-@app.on_message(filters.command(types))
-async def spem(client, message):
+@app.on_message(filters.command("types))
+async def types(client, message):
     try:
        client.send_message(
           chat_id=message.chat.id,
-          text="//hexamatch 1000 10"
+          text="hii"
        )
 
 
