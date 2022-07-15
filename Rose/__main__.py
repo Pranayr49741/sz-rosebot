@@ -87,27 +87,14 @@ home_keyboard_pm = InlineKeyboardMarkup(
     [
         [
             InlineKeyboardButton(
-                text=" ➕ Add Me To Your Group ➕ ",
-                url=f"http://t.me/{BOT_USERNAME}?startgroup=new",
+                text="Offcial Beta Channel",
+                url=f"https://t.me/betagang",
             )
         ],
         [
-           InlineKeyboardButton(
-                text=" ℹ️ About", callback_data="_about"
-            ),
             InlineKeyboardButton(
-                text="🌍 languages ", callback_data="_langs"
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text="📮 How To Use Me", callback_data="bot_commands"
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text="🌐 My Website",
-                url=f"https://szrosebot.ml",
+                text="click here to join beta",
+                url=f"https://t.me/BetaRegistration_Bot",
             ),
             InlineKeyboardButton(
                 text="🔰News Channel",
