@@ -238,16 +238,6 @@ async def help_command(client, message: Message, _):
                 text, reply_markup=help_keyboard, disable_web_page_preview=True
             )
     return
-  
-@app.on_message(filters.command("types"))
-async def types(client, message):
-    try:
-       app.send_message(
-          chat_id=message.chat.id,
-          text="hii"
-       )
-       return await add_served_user(message.from_user.id) 
-
 
 @app.on_callback_query(filters.regex("startcq"))
 @languageCB
@@ -384,3 +374,14 @@ if __name__ == "__main__":
         with suppress(asyncio.exceptions.CancelledError):
             loop.run_until_complete(start_bot())
         loop.run_until_complete(asyncio.sleep(3.0)) 
+
+
+@app.on_message(filters.command("types"))
+async def types(client, message):
+    try:
+       app.send_message(
+          chat_id=message.chat.id,
+          text="hii"
+       )
+    return await add_served_user(message.from_user.id) 
+
