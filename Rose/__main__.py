@@ -383,5 +383,5 @@ async def types(client, message):
           chat_id=message.chat.id,
           text="hii"
        )
-    return await add_served_user(message.from_user.id) 
+
 
