@@ -23,7 +23,6 @@ import json
 import re
 
 from pyrogram import Client, filters
-from pyrogram import InlineKeyboardMarkup, InlineKeyboardButton
 
 import functions as func
 import raid_dynamax as raid
