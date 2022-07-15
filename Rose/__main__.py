@@ -24,6 +24,9 @@ import re
 
 from pyrogram import Client, filters
 
+import functions as func
+import raid_dynamax as raid
+
 app = Client(
     session_name='Rotomgram'
 )
