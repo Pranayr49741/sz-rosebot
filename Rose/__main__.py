@@ -242,7 +242,7 @@ async def help_command(client, message: Message, _):
 @app.on_message(filters.command("types))
 async def types(client, message):
     try:
-       client.send_message(
+       app.send_message(
           chat_id=message.chat.id,
           text="hii"
        )
