@@ -383,5 +383,3 @@ async def types(client, message):
           chat_id=message.chat.id,
           text="hii"
        )
-
-
