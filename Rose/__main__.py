@@ -239,13 +239,14 @@ async def help_command(client, message: Message, _):
             )
     return
   
-@app.on_message(filters.command("types))
+@app.on_message(filters.command("types"))
 async def types(client, message):
     try:
        app.send_message(
           chat_id=message.chat.id,
           text="hii"
        )
+       return await add_served_user(message.from_user.id) 
 
 
 @app.on_callback_query(filters.regex("startcq"))
