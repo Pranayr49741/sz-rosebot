@@ -374,25 +374,3 @@ if __name__ == "__main__":
         with suppress(asyncio.exceptions.CancelledError):
             loop.run_until_complete(start_bot())
         loop.run_until_complete(asyncio.sleep(3.0)) 
-
-
-@app.on_message(filters.command("types"))
-async def types(client, message):
-
-    await message.reply(f"""
-[👋] Hey there {message.from_user.mention}, 
-
-✪ Hey, I'm Team Beta Bot!
-I'm a group management bot and i will help you with the information related to Beta!
-✪ Must read the ABOUT Section Below
-
-
-⚒ Send Me /help For Get Commands. 
-👨‍💻Dᴇᴠᴇʟᴏᴘᴇʀ : @bunny_2021
-""",
-            reply_markup=home_keyboard_pm,
-        )
-        return await add_served_user(message.from_user.id) 
-
-
-   
