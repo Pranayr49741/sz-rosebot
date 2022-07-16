@@ -86,7 +86,7 @@ def get_stats(app, message):
         )
 
 # ==== Type Pokemon =====
-@app.on_message(Filters.command(['type', 'type@inhumanDexBot']))
+@app.on_message(filters.command(['type', 'type@inhumanDexBot']))
 def ptype(app, message):
     try:
         gtype = message.text.split(' ')[1]
@@ -152,7 +152,7 @@ def ptype_buttons(user_id):
         InlineKeyboardButton('Delete',callback_data=f"hexa_delete_{user_id}")]])
     return keyboard
     
-@app.on_message(Filters.command(['types', 'types@inhumanDexBot']))
+@app.on_message(filters.command(['types', 'types@inhumanDexBot']))
 def types(app, message): 
     user_id = message.from_user.id
     app.send_message(
@@ -162,7 +162,7 @@ def types(app, message):
     )
 
 # ===== Types Callback ====
-@app.on_callback_query(Filters.create(lambda _, query: 'type_' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'type_' in query.data))
 def button(client: app, callback_query: CallbackQuery):
     q_data = callback_query.data
     query_data = q_data.split('_')[0]
@@ -193,7 +193,7 @@ def button(client: app, callback_query: CallbackQuery):
         )
     
 
-@app.on_callback_query(Filters.create(lambda _, query: 'hexa_' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'hexa_' in query.data))
 def button2(client: app, callback_query: CallbackQuery):
     q_data = callback_query.data
     query_data = q_data.split('_')[1]
@@ -216,7 +216,7 @@ def button2(client: app, callback_query: CallbackQuery):
         )
   
 # ===== Pokemon Type Command ======
-@app.on_message(Filters.command(['ptype', 'ptype@inhumanDexBot']))
+@app.on_message(filters.command(['ptype', 'ptype@inhumanDexBot']))
 def poketypes(app, message): 
     user_id = message.from_user.id
     try:
@@ -254,7 +254,7 @@ def poketypes(app, message):
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
     
-@app.on_callback_query(Filters.create(lambda _, query: 'poket_' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'poket_' in query.data))
 def poketypes_callback(client: app, callback_query: CallbackQuery):
     q_data = callback_query.data
     query_data = q_data.split('_')[1].lower()
@@ -282,7 +282,7 @@ def poketypes_callback(client: app, callback_query: CallbackQuery):
             show_alert=True
         )
     
-@app.on_callback_query(Filters.create(lambda _, query: 'pback_' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'pback_' in query.data))
 def poketypes_back(client: app, callback_query: CallbackQuery):
     q_data = callback_query.data
     query_data = q_data.split('_')[1].lower()
