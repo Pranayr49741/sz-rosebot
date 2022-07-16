@@ -117,22 +117,13 @@ def pkmn_search(app, message):
         name = base_form + ' (' + data[pkmn][form]['name'] + ')'
         text = func.set_message(data[pkmn][form], name, reduced=True)
 
-    markup_list = [[
+    markup_list = [
         InlineKeyboardButton(
             text='➕ Expand',
-            callback_data='hii'
+            callback_data='all_infos/'+pkmn+'/'+form
         )
-    ],
-    [
-        InlineKeyboardButton(
-            text='⚔️ Moveset',
-            callback_data='work/'+pkmn+'/'+form
-        ),
-        InlineKeyboardButton(
-            text='🏠 Locations',
-            callback_data='locations/'+pkmn+'/'+form
-        )
-    ]]
+    ]
+   
     for alt_form in data[pkmn]:
         if alt_form != form:
             markup_list.append([
@@ -179,22 +170,12 @@ def all_infos(app, call):
         name = base_form + ' (' + data[pkmn][form]['name'] + ')'
         text = func.set_message(data[pkmn][form], name, reduced=False)
 
-    markup_list = [[
+    markup_list = [
         InlineKeyboardButton(
             text='➖ Reduce',
-            callback_data='hii'
+            callback_data='basic_infos/'+pkmn+'/'+form
         )
-    ],
-    [
-        InlineKeyboardButton(
-            text='⚔️ Moveset',
-            callback_data='work/'+pkmn+'/'+form
-        ),
-        InlineKeyboardButton(
-            text='🏠 Locations',
-            callback_data='locations/'+pkmn+'/'+form
-        )
-    ]]
+    ]
     for alt_form in data[pkmn]:
         if alt_form != form:
             markup_list.append([
@@ -219,29 +200,6 @@ def work(app, call):
     dictt = func.set_moveset(pkmn, form, page)
 
     func.bot_action(app, call, dictt['text'], dictt['markup'])
-
-
-@app.on_callback_query(filters.create(lambda _, query: 'locations' in query.data))
-def locations(app, call):
-    pkmn = re.split('/', call.data)[1]
-    form = re.split('/', call.data)[2]
-
-    text = func.get_locations(data, pkmn)
-
-    markup = InlineKeyboardMarkup([[
-        InlineKeyboardButton(
-            text='⚔️ Moveset',
-            callback_data='work/'+pkmn+'/'+form
-        )
-    ],
-    [
-        InlineKeyboardButton(
-            text='🔙 Back to basic infos',
-            callback_data='basic_infos/'+pkmn+'/'+form
-        )
-    ]])
-
-    func.bot_action(app, call, text, markup)
 
 
 # ===== Usage command =====
