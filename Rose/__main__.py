@@ -140,7 +140,8 @@ def ptype(app, message):
     resistant_to = ", ".join(data['resistant_to'])
     vulnerable_to = ", ".join(data['vulnerable_to'])
     keyboard = ([[
-        InlineKeyboardButton('All Types',callback_data=f"ptype_buttons(user_id)")]])
+        InlineKeyboardButton('All Types',callback_data=f"help_back")]])
+
     app.send_message(
         chat_id=message.chat.id,
         text=(f"Type  :  `{gtype.lower()}`\n\n"
