@@ -206,7 +206,7 @@ def all_infos(app, call):
             ])
     markup = InlineKeyboardMarkup(markup_list)
 
-    func.bot_action(app, call, text, markup)
+    func.bot_action(app, message, text, markup)
 
 
 @app.on_callback_query(filters.create(lambda _, query: 'moveset' in query.data))
@@ -219,7 +219,7 @@ def moveset(app, call):
         page = 1
     dictt = func.set_moveset(pkmn, form, page)
 
-    func.bot_action(app, call, dictt['text'], dictt['markup'])
+    func.bot_action(app, message, dictt['text'], dictt['markup'])
 
 
 @app.on_callback_query(filters.create(lambda _, query: 'locations' in query.data))
@@ -242,7 +242,7 @@ def locations(app, call):
         )
     ]])
 
-    func.bot_action(app, call, text, markup)
+    func.bot_action(app, message, text, markup)
 
 
 loop = asyncio.get_event_loop()
