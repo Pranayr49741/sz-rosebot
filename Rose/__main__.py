@@ -260,7 +260,7 @@ def locations(app, call):
 
 # ===== Usage command =====
 @app.on_callback_query(filters.create(lambda _, query: 'usage' in query.data))
-@app.on_message(Filters.command(['usage', 'usage@RotomgramBot']))
+@app.on_message(filters.command(['usage', 'usage@RotomgramBot']))
 def usage(app, message):
     try:
         page = int(re.split('/', message.data)[1])
