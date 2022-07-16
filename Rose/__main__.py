@@ -85,43 +85,6 @@ def get_stats(app, message):
             text=text
         )
 
-# ==== Type Pokemon =====
-@app.on_message(filters.command(['type', 'type@inhumanDexBot']))
-def ptype(app, message):
-    try:
-        gtype = message.text.split(' ')[1]
-    except IndexError as s:
-        app.send_message(
-            chat_id=message.chat.id,
-            text="`Syntex error: use eg '/type poison'`"
-        )
-        return
-    try:
-        data = jtype[gtype.lower()]
-    except KeyError as s:
-        app.send_message(
-            chat_id=message.chat.id,
-            text=("`This type doesn't exist good sir :/ `\n"
-                  "`Do  /types  to check for the existing types.`")
-        )
-        return
-    strong_against = ", ".join(data['strong_against'])
-    weak_against = ", ".join(data['weak_against'])
-    resistant_to = ", ".join(data['resistant_to'])
-    vulnerable_to = ", ".join(data['vulnerable_to'])
-    keyboard = ([[
-        InlineKeyboardButton('All Types',callback_data=f"hexa_back_{message.from_user.id}")]])
-    app.send_message(
-        chat_id=message.chat.id,
-        text=(f"Type  :  `{gtype.lower()}`\n\n"
-              f"Strong Against:\n`{strong_against}`\n\n"
-              f"Weak Against:\n`{weak_against}`\n\n"
-              f"Resistant To:\n`{resistant_to}`\n\n"
-              f"Vulnerable To:\n`{vulnerable_to}`"),
-        reply_markup=InlineKeyboardMarkup(keyboard)
-           
-    )
-
 # ==== Typew List =====
 def ptype_buttons(user_id):
     keyboard = ([[
@@ -151,6 +114,45 @@ def ptype_buttons(user_id):
     keyboard += ([[
         InlineKeyboardButton('Delete',callback_data=f"hexa_delete_{user_id}")]])
     return keyboard
+
+# ==== Type Pokemon =====
+@app.on_message(filters.command(['type', 'type@inhumanDexBot']))
+def ptype(app, message):
+    try:
+        gtype = message.text.split(' ')[1]
+    except IndexError as s:
+        app.send_message(
+            chat_id=message.chat.id,
+            text="`Syntex error: use eg '/type poison'`"
+        )
+        return
+    try:
+        data = jtype[gtype.lower()]
+    except KeyError as s:
+        app.send_message(
+            chat_id=message.chat.id,
+            text=("`This type doesn't exist good sir :/ `\n"
+                  "`Do  /types  to check for the existing types.`")
+        )
+        return
+    strong_against = ", ".join(data['strong_against'])
+    weak_against = ", ".join(data['weak_against'])
+    resistant_to = ", ".join(data['resistant_to'])
+    vulnerable_to = ", ".join(data['vulnerable_to'])
+    keyboard = ([[
+        InlineKeyboardButton('All Types',callback_data=f"ptype_buttons(user_id)")]])
+    app.send_message(
+        chat_id=message.chat.id,
+        text=(f"Type  :  `{gtype.lower()}`\n\n"
+              f"Strong Against:\n`{strong_against}`\n\n"
+              f"Weak Against:\n`{weak_against}`\n\n"
+              f"Resistant To:\n`{resistant_to}`\n\n"
+              f"Vulnerable To:\n`{vulnerable_to}`"),
+        reply_markup=InlineKeyboardMarkup(keyboard)
+           
+    )
+
+
     
 @app.on_message(filters.command(['types', 'types@inhumanDexBot']))
 def types(app, message): 
@@ -193,7 +195,7 @@ def button(client: app, callback_query: CallbackQuery):
         )
     
 
-@app.on_callback_query(filters.create(lambda _, query: 'hexa_back_' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'hexa_' in query.data))
 def button2(client: app, callback_query: CallbackQuery):
     q_data = callback_query.data
     query_data = q_data.split('_')[1]
