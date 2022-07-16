@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 
 texts = json.load(open('Rose/texts.json', 'r'))
-data = json.load(open('Releases/pkmn.json', 'r'))
+data = json.load(open('Rose/pkmn.json', 'r'))
 
 
 def bot_action(app, message, text, markup):
