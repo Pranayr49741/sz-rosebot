@@ -3,7 +3,7 @@ import json
 import re
 import random
 
-from pyrogram import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 import functions as func
 
