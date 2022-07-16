@@ -89,7 +89,7 @@ def get_stats(app, message):
 def ptype_buttons(user_id):
     keyboard = ([[
         InlineKeyboardButton('Normal',url=f"https://t.me/betagang"),
-        InlineKeyboardButton('Fighting',callback_data=f"type_"),
+        InlineKeyboardButton('Fighting',callback_data="help_back"),
         InlineKeyboardButton('Flying',callback_data=f"hexa_")]])
     keyboard += ([[
         InlineKeyboardButton('Poison',callback_data=f"hexa_back_"),
@@ -165,8 +165,8 @@ def types(app, message):
     )
 
 # ===== Types Callback ====
-@app.on_callback_query(filters.create(lambda _, query: 'type_' in query.data))
-def button(client: app, callback_query: CallbackQuery):
+@run_async
+def button(update: Update, context: CallbackContext):
     q_data = callback_query.data
     query_data = q_data.split('_')[0]
     type_n = q_data.split('_')[1]
