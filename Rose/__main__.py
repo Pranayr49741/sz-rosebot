@@ -120,7 +120,7 @@ def pkmn_search(app, message):
     markup_list = [[
         InlineKeyboardButton(
             text='➕ Expand',
-            callback_data='all_infos/'+pkmn+'/'+form
+            callback_data='get_advanced_data/'+pkmn+'/'+form
         )
     ],
     [
