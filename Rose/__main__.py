@@ -126,7 +126,7 @@ def pkmn_search(app, message):
     [
         InlineKeyboardButton(
             text='⚔️ Moveset',
-            callback_data='moveset/'+pkmn+'/'+form
+            callback_data='set_moveset/'+pkmn+'/'+form
         ),
         InlineKeyboardButton(
             text='🏠 Locations',
@@ -182,13 +182,13 @@ def all_infos(app, call):
     markup_list = [[
         InlineKeyboardButton(
             text='➖ Reduce',
-            callback_data='basic_infos/'+pkmn+'/'+form
+            callback_data='hii'
         )
     ],
     [
         InlineKeyboardButton(
             text='⚔️ Moveset',
-            callback_data='moveset/'+pkmn+'/'+form
+            callback_data='set_moveset/'+pkmn+'/'+form
         ),
         InlineKeyboardButton(
             text='🏠 Locations',
