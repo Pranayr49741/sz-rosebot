@@ -722,5 +722,3 @@ if __name__ == "__main__":
         with suppress(asyncio.exceptions.CancelledError):
             loop.run_until_complete(start_bot())
         loop.run_until_complete(asyncio.sleep(3.0)) 
-
-app.run()
