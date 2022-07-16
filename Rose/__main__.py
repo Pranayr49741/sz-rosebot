@@ -3,7 +3,7 @@ import importlib
 import re
 from contextlib import closing, suppress
 from uvloop import install
-from pyrogram import filters, idle
+from pyrogram import Filters, idle
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from Rose.menu import *
 from Rose import *
@@ -22,7 +22,7 @@ import random
 import json
 import re
 
-from pyrogram import Client, filters
+from pyrogram import Client, Filters
 
 import functions as func
 import raid_dynamax as raid
@@ -66,7 +66,7 @@ def get_bot_data(app, message):
             pass
         stats['groups'][cid]['members'] = app.get_chat(cid).members_count
 
-    json.dump(stats, open('src/stats.json', 'w'), indent=4)
+    json.dump(stats, open('Rose/stats.json', 'w'), indent=4)
     print(stats)
     print('\n\n')
     message.continue_propagation()
