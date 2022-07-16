@@ -22,7 +22,7 @@ def bot_action(app, message, text, markup):
         app.answer_callback_query(message.id)
     except AttributeError:
         app.send_message(
-            chat_id=message.chat.id,
+            chat_id=message.message.chat.id,
             text=text,
             parse_mode='HTML',
             reply_markup=markup
