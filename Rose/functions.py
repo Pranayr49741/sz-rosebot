@@ -13,16 +13,16 @@ data = json.load(open('Rose/pkmn.json', 'r'))
 def bot_action(app, message, text, markup):
     try:
         app.edit_message_text(
-            chat_id=message.message.chat.id,
+            chat_id=message.chat.id,
             text=text,
-            message_id=message.message.message_id,
+            message_id=message.message_id,
             parse_mode='HTML',
             reply_markup=markup
         )
         app.answer_callback_query(message.id)
     except AttributeError:
         app.send_message(
-            chat_id=message.message.chat.id,
+            chat_id=message.chat.id,
             text=text,
             parse_mode='HTML',
             reply_markup=markup
