@@ -121,17 +121,17 @@ def pkmn_search(app, message):
     markup_list = [[
         InlineKeyboardButton(
             text='➕ Expand',
-            callback_data='all_infos'+[pkmn]+[form]
+            callback_data='all_infos'+'pkmn'+'form'
         )
     ],
     [
         InlineKeyboardButton(
             text='⚔️ Moveset',
-            callback_data='moveset'+[pkmn]+[form]
+            callback_data='moveset'+'pkmn'+'form'
         ),
         InlineKeyboardButton(
             text='🏠 Locations',
-            callback_data='locations'+[pkmn]+[form]
+            callback_data='locations'+'pkmn'+'form'
         )
     ]]
     for alt_form in data[pkmn]:
@@ -183,17 +183,17 @@ def all_infos(app, call):
     markup_list = [[
         InlineKeyboardButton(
             text='➖ Reduce',
-            callback_data='basic_infos'+[pkmn]+[form]
+            callback_data='basic_infos'+'pkmn'+'form'
         )
     ],
     [
         InlineKeyboardButton(
             text='⚔️ Moveset',
-            callback_data='moveset'+[pkmn]+[form]
+            callback_data='moveset'+'pkmn'+'form'
         ),
         InlineKeyboardButton(
             text='🏠 Locations',
-            callback_data='locations'+[pkmn]+[form]
+            callback_data='locations'+'pkmn'+'form'
         )
     ]]
     for alt_form in data[pkmn]:
@@ -232,13 +232,13 @@ def locations(app, call):
     markup = InlineKeyboardMarkup([[
         InlineKeyboardButton(
             text='⚔️ Moveset',
-            callback_data='moveset'+[pkmn]+[form]
+            callback_data='moveset'+'pkmn'+'form'
         )
     ],
     [
         InlineKeyboardButton(
             text='🔙 Back to basic infos',
-            callback_data='basic_infos'+[pkmn]+[form]
+            callback_data='basic_infos'+'pkmn'+'form'
         )
     ]])
 
