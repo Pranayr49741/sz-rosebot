@@ -20,3 +20,6 @@ telegraph==2.1.0
 pyrogram==1.4.16
 pyyaml==5.4
 bs4
+telegram.ext
+telegram.ext.dispatcher
+telethon
