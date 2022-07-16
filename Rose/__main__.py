@@ -126,7 +126,7 @@ def pkmn_search(app, message):
     [
         InlineKeyboardButton(
             text='⚔️ Moveset',
-            callback_data='set_moveset/'+pkmn+'/'+form
+            callback_data='work/'+pkmn+'/'+form
         ),
         InlineKeyboardButton(
             text='🏠 Locations',
@@ -188,7 +188,7 @@ def all_infos(app, call):
     [
         InlineKeyboardButton(
             text='⚔️ Moveset',
-            callback_data='set_moveset/'+pkmn+'/'+form
+            callback_data='work/'+pkmn+'/'+form
         ),
         InlineKeyboardButton(
             text='🏠 Locations',
@@ -208,8 +208,8 @@ def all_infos(app, call):
     func.bot_action(app, call, text, markup)
 
 
-@app.on_callback_query(filters.create(lambda _, query: 'moveset' in query.data))
-def moveset(app, call):
+@app.on_callback_query(filters.create(lambda _, query: 'work' in query.data))
+def work(app, call):
     pkmn = re.split('/', call.data)[1]
     form = re.split('/', call.data)[2]
     if len(re.split('/', call.data)) == 4:
@@ -231,7 +231,7 @@ def locations(app, call):
     markup = InlineKeyboardMarkup([[
         InlineKeyboardButton(
             text='⚔️ Moveset',
-            callback_data='moveset/'+pkmn+'/'+form
+            callback_data='work/'+pkmn+'/'+form
         )
     ],
     [
