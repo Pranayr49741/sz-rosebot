@@ -4,7 +4,7 @@ import re
 from contextlib import closing, suppress
 from uvloop import install
 from pyrogram import filters, idle
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 from Rose.menu import *
 from Rose import *
 from Rose.plugins import ALL_MODULES
