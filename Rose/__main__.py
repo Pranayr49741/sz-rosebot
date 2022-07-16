@@ -22,6 +22,12 @@ import random
 import json
 import re
 
+from telegram.ext import (
+    CallbackContext,
+    CallbackQueryHandler
+)
+from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
+
 from pyrogram import Client, filters
 
 import functions as func
