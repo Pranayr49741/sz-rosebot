@@ -3,7 +3,7 @@ import importlib
 import re
 from contextlib import closing, suppress
 from uvloop import install
-from pyrogram import Filters, idle
+from pyrogram import filters, idle
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from Rose.menu import *
 from Rose import *
@@ -22,7 +22,7 @@ import random
 import json
 import re
 
-from pyrogram import Client, Filters
+from pyrogram import Client, filters
 
 import functions as func
 import raid_dynamax as raid
@@ -40,8 +40,8 @@ raid_dict = {}
 
 
 # ===== Stats =====
-@app.on_message(Filters.private & Filters.create(lambda _, message: str(message.chat.id) not in stats['users']))
-@app.on_message(Filters.group & Filters.create(lambda _, message: str(message.chat.id) not in stats['groups']))
+@app.on_message(filters.private & filters.create(lambda _, message: str(message.chat.id) not in stats['users']))
+@app.on_message(filters.group & filters.create(lambda _, message: str(message.chat.id) not in stats['groups']))
 def get_bot_data(app, message):
     cid = str(message.chat.id)
     if message.chat.type == 'private':
@@ -72,7 +72,7 @@ def get_bot_data(app, message):
     message.continue_propagation()
 
 
-@app.on_message(Filters.command(['stats', 'stats@RotomgramBot']))
+@app.on_message(filters.command(['stats', 'stats@RotomgramBot']))
 def get_stats(app, message):
     if message.from_user.id == 312012637:
         members = 0
@@ -90,7 +90,7 @@ def get_stats(app, message):
 
 
 # ===== Home =====
-@app.on_message(Filters.command(['start', 'start@RotomgramBot']))
+@app.on_message(filters.command(['start', 'start@RotomgramBot']))
 def start(app, message):
     app.send_message(
         chat_id=message.chat.id,
@@ -100,8 +100,8 @@ def start(app, message):
 
 
 # ===== Data command =====
-@app.on_callback_query(Filters.create(lambda _, query: 'basic_infos' in query.data))
-@app.on_message(Filters.command(['data', 'data@RotomgramBot']))
+@app.on_callback_query(filters.create(lambda _, query: 'basic_infos' in query.data))
+@app.on_message(filters.command(['data', 'data@RotomgramBot']))
 def pkmn_search(app, message):
     try:
         if message.text == '/data' or message.text == '/data@RotomgramBot':
@@ -181,7 +181,7 @@ def best_matches(app, message, result):
     app.send_message(message.chat.id, text, parse_mode='HTML')
 
 
-@app.on_callback_query(Filters.create(lambda _, query: 'all_infos' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'all_infos' in query.data))
 def all_infos(app, call):
     pkmn = re.split('/', call.data)[1]
     form = re.split('/', call.data)[2]
@@ -222,7 +222,7 @@ def all_infos(app, call):
     func.bot_action(app, call, text, markup)
 
 
-@app.on_callback_query(Filters.create(lambda _, query: 'moveset' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'moveset' in query.data))
 def moveset(app, call):
     pkmn = re.split('/', call.data)[1]
     form = re.split('/', call.data)[2]
@@ -235,7 +235,7 @@ def moveset(app, call):
     func.bot_action(app, call, dictt['text'], dictt['markup'])
 
 
-@app.on_callback_query(Filters.create(lambda _, query: 'locations' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'locations' in query.data))
 def locations(app, call):
     pkmn = re.split('/', call.data)[1]
     form = re.split('/', call.data)[2]
@@ -259,7 +259,7 @@ def locations(app, call):
 
 
 # ===== Usage command =====
-@app.on_callback_query(Filters.create(lambda _, query: 'usage' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'usage' in query.data))
 @app.on_message(Filters.command(['usage', 'usage@RotomgramBot']))
 def usage(app, message):
     try:
@@ -288,7 +288,7 @@ def usage(app, message):
 
 
 # ===== FAQ command =====
-@app.on_message(Filters.command(['faq', 'faq@RotomgramBot']))
+@app.on_message(filters.command(['faq', 'faq@RotomgramBot']))
 def faq(app, message):
     text = texts['faq']
     app.send_message(
@@ -301,7 +301,7 @@ def faq(app, message):
 
 
 # ===== About command =====
-@app.on_message(Filters.command(['about', 'about@RotomgramBot']))
+@app.on_message(filters.command(['about', 'about@RotomgramBot']))
 def about(app, message):
     text = texts['about']
     markup = InlineKeyboardMarkup([[
@@ -320,45 +320,45 @@ def about(app, message):
 
 
 # ===== Raid commands =====
-@app.on_message(Filters.command(['addcode', 'addcode@RotomgramBot']))
+@app.on_message(filters.command(['addcode', 'addcode@RotomgramBot']))
 def call_add_fc(app, message):
     raid.add_fc(app, message, texts)
 
-@app.on_message(Filters.command(['mycode', 'mycode@RotomgramBot']))
+@app.on_message(filters.command(['mycode', 'mycode@RotomgramBot']))
 def call_show_my_fc(app, message):
     raid.show_my_fc(app, message, texts)
 
-@app.on_message(Filters.command(['newraid', 'newraid@RotomgramBot']))
+@app.on_message(filters.command(['newraid', 'newraid@RotomgramBot']))
 def call_new_raid(app, message):
     raid.new_raid(app, message, texts)
 
-@app.on_callback_query(Filters.create(lambda _, query: 'stars' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'stars' in query.data))
 def call_stars(app, message):
     raid.stars(app, message, texts)
 
-@app.on_callback_query(Filters.create(lambda _, query: 'join' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'join' in query.data))
 def call_join(app, message):
     raid.join(app, message, texts)
 
-@app.on_callback_query(Filters.create(lambda _, query: 'done' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'done' in query.data))
 def call_done(app, message):
     raid.done(app, message, texts)
 
-@app.on_callback_query(Filters.create(lambda _, query: 'yes' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'yes' in query.data))
 def call_confirm(app, message):
     raid.confirm(app, message, texts)
 
-@app.on_callback_query(Filters.create(lambda _, query: 'no' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'no' in query.data))
 def call_back(app, message):
     raid.back(app, message, texts)
 
-@app.on_callback_query(Filters.create(lambda _, query: 'pin' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'pin' in query.data))
 def call_pin(app, message):
     raid.pin(app, message, texts)
 
 
 # ===== Presentation =====
-@app.on_message(Filters.create(lambda _, message: message.new_chat_members))
+@app.on_message(filters.create(lambda _, message: message.new_chat_members))
 def bot_added(app, message):
     for new_member in message.new_chat_members:
         if new_member.id == 932107343:
