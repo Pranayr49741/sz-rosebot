@@ -88,7 +88,7 @@ def get_stats(app, message):
 # ==== Typew List =====
 def ptype_buttons(user_id):
     keyboard = ([[
-        InlineKeyboardButton('Normal',callback_data=f"type_normal_{user_id}"),
+        InlineKeyboardButton('Normal',url=f"https://t.me/betagang"),
         InlineKeyboardButton('Fighting',callback_data=f"type_fighting_{user_id}"),
         InlineKeyboardButton('Flying',callback_data=f"type_flying_{user_id}")]])
     keyboard += ([[
