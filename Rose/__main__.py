@@ -193,7 +193,7 @@ def button(client: app, callback_query: CallbackQuery):
         )
     
 
-@app.on_callback_query(filters.create(lambda _, query: 'hexa_back' in query.data))
+@app.on_callback_query(filters.create(lambda _, query: 'hexa_back_' in query.data))
 def button2(client: app, callback_query: CallbackQuery):
     q_data = callback_query.data
     query_data = q_data.split('_')[1]
