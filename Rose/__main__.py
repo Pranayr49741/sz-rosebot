@@ -32,7 +32,7 @@ app = Client(
 )
 
 texts = json.load(open('Rose/texts.json', 'r'))
-data = json.load(open('Releases/pkmn.json', 'r'))
+data = json.load(open('Rose/pkmn.json', 'r'))
 stats = json.load(open('Rose/stats.json', 'r'))
 
 usage_dict = {'vgc': None}
