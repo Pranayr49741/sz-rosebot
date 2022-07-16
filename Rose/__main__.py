@@ -121,17 +121,17 @@ def pkmn_search(app, message):
     markup_list = [[
         InlineKeyboardButton(
             text='➕ Expand',
-            callback_data='all_infos'+pkmn+form
+            callback_data='all_infos'+[pkmn]+[form]
         )
     ],
     [
         InlineKeyboardButton(
             text='⚔️ Moveset',
-            callback_data='moveset'+pkmn+form
+            callback_data='moveset'+[pkmn]+[form]
         ),
         InlineKeyboardButton(
             text='🏠 Locations',
-            callback_data='locations'+pkmn+form
+            callback_data='locations'+[pkmn]+[form]
         )
     ]]
     for alt_form in data[pkmn]:
@@ -183,17 +183,17 @@ def all_infos(app, call):
     markup_list = [[
         InlineKeyboardButton(
             text='➖ Reduce',
-            callback_data='basic_infos'+pkmn+form
+            callback_data='basic_infos'+[pkmn]+[form]
         )
     ],
     [
         InlineKeyboardButton(
             text='⚔️ Moveset',
-            callback_data='moveset'+pkmn+form
+            callback_data='moveset'+[pkmn]+[form]
         ),
         InlineKeyboardButton(
             text='🏠 Locations',
-            callback_data='locations'+pkmn+form
+            callback_data='locations'+[pkmn]+[form]
         )
     ]]
     for alt_form in data[pkmn]:
@@ -232,92 +232,17 @@ def locations(app, call):
     markup = InlineKeyboardMarkup([[
         InlineKeyboardButton(
             text='⚔️ Moveset',
-            callback_data='moveset'+pkmn+form
+            callback_data='moveset'+[pkmn]+[form]
         )
     ],
     [
         InlineKeyboardButton(
             text='🔙 Back to basic infos',
-            callback_data='basic_infos'+pkmn+form
+            callback_data='basic_infos'+[pkmn]+[form]
         )
     ]])
 
     func.bot_action(app, call, text, markup)
-
-
-# ===== Usage command =====
-@app.on_callback_query(filters.create(lambda _, query: 'usage' in query.data))
-@app.on_message(filters.command(['usage', 'usage@RotomgramBot']))
-def usage(app, message):
-    try:
-        page = int(re.split('/', message.data)[1])
-        dictt = func.get_usage_vgc(int(page), usage_dict['vgc'])
-    except AttributeError:
-        page = 1
-        text = '<i>Connecting to Pokémon Showdown database...</i>'
-        message = app.send_message(message.chat.id, text, parse_mode='HTML')
-        dictt = func.get_usage_vgc(int(page))
-        usage_dict['vgc'] = dictt['vgc_usage']
-
-    leaderboard = dictt['leaderboard']
-    base_text = texts['usage']
-    text = ''
-    for i in range(15):
-        pkmn = leaderboard[i]
-        text += base_text.format(
-            pkmn['rank'],
-            pkmn['pokemon'],
-            pkmn['usage'],
-        )
-    markup = dictt['markup']
-
-    func.bot_action(app, message, text, markup)
-
-
-# ===== FAQ command =====
-@app.on_message(filters.command(['faq', 'faq@RotomgramBot']))
-def faq(app, message):
-    text = texts['faq']
-    app.send_message(
-        chat_id=message.chat.id,
-        text=text, 
-        parse_mode='HTML',
-        disable_web_page_preview=True
-    )
-
-
-
-# ===== About command =====
-@app.on_message(filters.command(['about', 'about@RotomgramBot']))
-def about(app, message):
-    text = texts['about']
-    markup = InlineKeyboardMarkup([[
-        InlineKeyboardButton(
-            text='Github',
-            url='https://github.com/alessiocelentano/rotomgram'
-        )
-    ]])
-
-    app.send_message(
-        chat_id=message.chat.id,
-        text=text, 
-        reply_markup=markup,
-        disable_web_page_preview=True
-    )
-
-
-
-
-# ===== Presentation =====
-@app.on_message(filters.create(lambda _, message: message.new_chat_members))
-def bot_added(app, message):
-    for new_member in message.new_chat_members:
-        if new_member.id == 1208988512:
-            text = texts['added']
-            app.send_message(
-                chat_id=message.chat.id,
-                text=text
-            )
 
 
 loop = asyncio.get_event_loop()
