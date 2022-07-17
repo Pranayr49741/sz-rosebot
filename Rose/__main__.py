@@ -96,7 +96,7 @@ def ptype_buttons(user_id):
     keyboard = ([[
         InlineKeyboardButton('Normal',url=f"https://t.me/betagang"),
         InlineKeyboardButton('Fighting',callback_data="help_back"),
-        InlineKeyboardButton('Flying',callback_data=f"hexa_")]])
+        InlineKeyboardButton('Flying',callback_data=f"bot_commands")]])
     keyboard += ([[
         InlineKeyboardButton('Poison',callback_data=f"hexa_back_"),
         InlineKeyboardButton('Ground',callback_data=f"type_ground_{user_id}"),
@@ -202,11 +202,12 @@ def button(client: app, callback_query: CallbackQuery):
         )
     
 
-@app.on_callback_query(filters.regex("types_back in query.data"))
+@app.on_callback_query(filters.regex("types_back"))
 def button2(client: app, callback_query: CallbackQuery):
     q_data = callback_query.data
     query_data = q_data.split('_')[1]
-    user_id = int(q_data.split('_')[2])
+    query_data2 = q_data.split('_')[2]
+    user_id = int(query_data2)
     cuser_id = callback_query.from_user.id
     if user_id == cuser_id:
         if query_data == "back":
