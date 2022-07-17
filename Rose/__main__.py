@@ -204,26 +204,15 @@ def button(client: app, callback_query: CallbackQuery):
 
 @app.on_callback_query(filters.regex("types_back"))
 def button2(client: app, callback_query: CallbackQuery):
-    q_data = callback_query.data
-    query_data = q_data.split('_')
-    user_id = int(q_data.split('_')[1])
-    cuser_id = callback_query.from_user.id
-    if user_id == cuser_id:
-        if query_data == "back":
-            callback_query.message.edit_text(
+    text ,keyboard = await help_parser(CallbackQuery.from_user.mention)
+    await app.send_message(
+        callback_query.message.edit_text(
                 "List of types of Pokemons:",
                 reply_markup=InlineKeyboardMarkup(ptype_buttons(user_id))
-            )
-        elif query_data == "delete":
-            callback_query.message.delete()
-        else:
-            return
-    else:
-        callback_query.answer(
-            text="You can't use this button!",
-            show_alert=True
-        )
-  
+    )
+    await CallbackQuery.message.delete()
+
+
 # ===== Pokemon Type Command ======
 @app.on_message(filters.command(['ptype', 'ptype@inhumanDexBot']))
 def poketypes(app, message): 
