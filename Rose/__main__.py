@@ -211,6 +211,8 @@ def button2(client: app, callback_query: CallbackQuery):
                 reply_markup=InlineKeyboardMarkup(ptype_buttons(user_id))
     )
     
+    await CallbackQuery.message.delete()
+
 
 
 # ===== Pokemon Type Command ======
