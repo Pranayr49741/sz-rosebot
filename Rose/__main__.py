@@ -211,49 +211,10 @@ def button2(client: app, callback_query: CallbackQuery):
                 reply_markup=InlineKeyboardMarkup(ptype_buttons(user_id))
     )
     
-    await CallbackQuery.message.delete()
-
-
-
-# ===== Pokemon Type Command ======
-@app.on_message(filters.command(['ptype', 'ptype@inhumanDexBot']))
-def poketypes(app, message): 
-    user_id = message.from_user.id
-    try:
-        arg = message.text.split(' ')[1].lower()
-    except IndexError:
-        app.send_message(
-            chat_id=message.chat.id,
-            text=("`Syntex error: use eg '/ptype pokemon_name'`\n"
-                  "`eg /ptype Pikachu`")
-        )
-        return  
-    try:
-        p_type = data[arg][arg]['type']
-    except KeyError:
-        app.send_message(
-            chat_id=message.chat.id,
-            text="`This pokemon doesn't exist good sir :/`"
-        )
-        return
     
-    try:
-        get_pt = f"{p_type['type1']}, {p_type['type2']:}"
-        keyboard = ([[
-        InlineKeyboardButton(p_type['type1'],callback_data=f"poket_{p_type['type1']}_{arg}_{user_id}"),
-        InlineKeyboardButton(p_type['type2'],callback_data=f"poket_{p_type['type2']}_{arg}_{user_id}")]])
-    except KeyError:
-        get_pt = f"{p_type['type1']}"
-        keyboard = ([[
-        InlineKeyboardButton(p_type['type1'],callback_data=f"poket_{p_type['type1']}_{arg}_{user_id}")]])
-    app.send_message(
-        chat_id=message.chat.id,
-        text=(f"Pokemon: `{arg}`\n\n"
-              f"Types: `{get_pt}`\n\n"
-              "__Click the button below to get the attact type effectiveness!__"),
-        reply_markup=InlineKeyboardMarkup(keyboard)
-    )
-    
+
+
+
 @app.on_callback_query(filters.create(lambda _, query: 'poket_' in query.data))
 def poketypes_callback(client: app, callback_query: CallbackQuery):
     q_data = callback_query.data
