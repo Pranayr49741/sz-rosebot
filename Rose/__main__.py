@@ -171,8 +171,8 @@ def types(app, message):
     )
 
 # ===== Types Callback ====
-@run_async
-def button(update: Update, context: CallbackContext):
+@app.on_callback_query(filters.create(lambda _, query: 'type_' in query.data))
+def button(client: app, callback_query: CallbackQuery):
     q_data = callback_query.data
     query_data = q_data.split('_')[0]
     type_n = q_data.split('_')[1]
