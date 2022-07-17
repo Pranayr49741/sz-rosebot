@@ -203,6 +203,7 @@ def button(client: app, callback_query: CallbackQuery):
     
 
 @app.on_callback_query(filters.regex("types_back"))
+@languageCB
 def button2(client: app, callback_query: CallbackQuery):
     text ,keyboard = await help_parser(CallbackQuery.from_user.mention)
     await app.send_message(
@@ -216,6 +217,7 @@ def button2(client: app, callback_query: CallbackQuery):
 
 
 @app.on_callback_query(filters.create(lambda _, query: 'poket_' in query.data))
+@languageCB
 def poketypes_callback(client: app, callback_query: CallbackQuery):
     q_data = callback_query.data
     query_data = q_data.split('_')[1].lower()
