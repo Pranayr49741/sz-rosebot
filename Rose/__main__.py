@@ -206,7 +206,7 @@ def button(client: app, callback_query: CallbackQuery):
 def button2(client: app, callback_query: CallbackQuery):
     q_data = callback_query.data
     query_data = q_data.split('_')[1]
-    user_id = int(q_data.split('_')[1])
+    user_id = int(float(q_data.split('_')[1]))
     cuser_id = callback_query.from_user.id
     if user_id == cuser_id:
         if query_data == "back":
