@@ -171,7 +171,7 @@ def types(app, message):
     )
 
 # ===== Types Callback ====
-@app.on_callback_query(filters.regex("types_"))
+@app.on_callback_query(filters.regex("ty_"))
 def button(client: app, callback_query: CallbackQuery):
     q_data = callback_query.data
     query_data = q_data.split('_')[0]
