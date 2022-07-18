@@ -103,23 +103,23 @@ ptype_buttons=InlineKeyboardMarkup(
         InlineKeyboardButton('Ground',callback_data=f"type"),
         InlineKeyboardButton('Rock',callback_data=f"type")],
     
-        [InlineKeyboardButton('Bug',callback_data=f"type_bug_{user_id}"),
-        InlineKeyboardButton('Ghost',callback_data=f"type_ghost_{user_id}"),
-        InlineKeyboardButton('Steel',callback_data=f"type_steel_{user_id}")],
+        [InlineKeyboardButton('Bug',callback_data=f"type_bug_"),
+        InlineKeyboardButton('Ghost',callback_data=f"type_ghost_"),
+        InlineKeyboardButton('Steel',callback_data=f"type_steel_")],
     
-        [InlineKeyboardButton('Fire',callback_data=f"type_fire_{user_id}"),
-        InlineKeyboardButton('Water',callback_data=f"type_water_{user_id}"),
-        InlineKeyboardButton('Grass',callback_data=f"type_grass_{user_id}")],
+        [InlineKeyboardButton('Fire',callback_data=f"type_fire_"),
+        InlineKeyboardButton('Water',callback_data=f"type_water_"),
+        InlineKeyboardButton('Grass',callback_data=f"type_grass_")],
     
-        [InlineKeyboardButton('Electric',callback_data=f"type_electric_{user_id}"),
-        InlineKeyboardButton('Psychic',callback_data=f"type_psychic_{user_id}"),
-        InlineKeyboardButton('Ice',callback_data=f"type_ice_{user_id}")],
+        [InlineKeyboardButton('Electric',callback_data=f"type_electric_"),
+        InlineKeyboardButton('Psychic',callback_data=f"type_psychic_"),
+        InlineKeyboardButton('Ice',callback_data=f"type_ice_")],
  
-        [InlineKeyboardButton('Dragon',callback_data=f"type_dragon_{user_id}"),
-        InlineKeyboardButton('Fairy',callback_data=f"type_fairy_{user_id}"),
-        InlineKeyboardButton('Dark',callback_data=f"type_dark_{user_id}")],
+        [InlineKeyboardButton('Dragon',callback_data=f"type_dragon_"),
+        InlineKeyboardButton('Fairy',callback_data=f"type_fairy_"),
+        InlineKeyboardButton('Dark',callback_data=f"type_dark_")],
     
-        [InlineKeyboardButton('Delete',callback_data=f"hexa_delete_{user_id}")]])
+        [InlineKeyboardButton('Delete',callback_data=f"hexa_delete_")]])
    
 
 # ==== Type Pokemon =====
