@@ -208,7 +208,7 @@ def button(client: app, callback_query: CallbackQuery):
 async def commands_callbacc(client, CallbackQuery, _):
     await CallbackQuery.message.edit(
         text= "Choose Your languages:",
-        reply_markup=ptype_buttons(user_id),
+        reply_markup=ptype_buttons,
         disable_web_page_preview=True,
     )
     
