@@ -94,7 +94,7 @@ def get_stats(app, message):
 
 
 # ==== Typew List =====
-ptype_buttons=(
+ptype_buttons=InlineKeyboardMarkup(
 
         [[InlineKeyboardButton('Normal',url=f"https://t.me/betagang"),
         InlineKeyboardButton('Fighting',callback_data="help_back"),
