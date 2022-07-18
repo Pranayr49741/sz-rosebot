@@ -94,34 +94,34 @@ def get_stats(app, message):
 
 
 # ==== Typew List =====
-def ptype_buttons(user_id):
-    keyboard = ([[
-        InlineKeyboardButton('Normal',url=f"https://t.me/betagang"),
+ptype_buttons=(
+
+        [[InlineKeyboardButton('Normal',url=f"https://t.me/betagang"),
         InlineKeyboardButton('Fighting',callback_data="help_back"),
-        InlineKeyboardButton('Flying',callback_data=f"bot_commands")]])
-    keyboard += ([[
-        InlineKeyboardButton('Poison',callback_data=f"hexa_back_"),
-        InlineKeyboardButton('Ground',callback_data=f"type_ground_{user_id}"),
-        InlineKeyboardButton('Rock',callback_data=f"type_rock_{user_id}")]])
-    keyboard += ([[
-        InlineKeyboardButton('Bug',callback_data=f"type_bug_{user_id}"),
+        InlineKeyboardButton('Flying',callback_data=f"bot_commands")],
+   
+        [InlineKeyboardButton('Poison',callback_data=f"hexa_"),
+        InlineKeyboardButton('Ground',callback_data=f"type"),
+        InlineKeyboardButton('Rock',callback_data=f"type")],
+    
+        [InlineKeyboardButton('Bug',callback_data=f"type_bug_{user_id}"),
         InlineKeyboardButton('Ghost',callback_data=f"type_ghost_{user_id}"),
-        InlineKeyboardButton('Steel',callback_data=f"type_steel_{user_id}")]])
-    keyboard += ([[
-        InlineKeyboardButton('Fire',callback_data=f"type_fire_{user_id}"),
+        InlineKeyboardButton('Steel',callback_data=f"type_steel_{user_id}")],
+    
+        [InlineKeyboardButton('Fire',callback_data=f"type_fire_{user_id}"),
         InlineKeyboardButton('Water',callback_data=f"type_water_{user_id}"),
-        InlineKeyboardButton('Grass',callback_data=f"type_grass_{user_id}")]])
-    keyboard += ([[
-        InlineKeyboardButton('Electric',callback_data=f"type_electric_{user_id}"),
+        InlineKeyboardButton('Grass',callback_data=f"type_grass_{user_id}")],
+    
+        [InlineKeyboardButton('Electric',callback_data=f"type_electric_{user_id}"),
         InlineKeyboardButton('Psychic',callback_data=f"type_psychic_{user_id}"),
-        InlineKeyboardButton('Ice',callback_data=f"type_ice_{user_id}")]])
-    keyboard += ([[
-        InlineKeyboardButton('Dragon',callback_data=f"type_dragon_{user_id}"),
+        InlineKeyboardButton('Ice',callback_data=f"type_ice_{user_id}")],
+ 
+        [InlineKeyboardButton('Dragon',callback_data=f"type_dragon_{user_id}"),
         InlineKeyboardButton('Fairy',callback_data=f"type_fairy_{user_id}"),
-        InlineKeyboardButton('Dark',callback_data=f"type_dark_{user_id}")]])
-    keyboard += ([[
-        InlineKeyboardButton('Delete',callback_data=f"hexa_delete_{user_id}")]])
-    return keyboard
+        InlineKeyboardButton('Dark',callback_data=f"type_dark_{user_id}")],
+    
+        [InlineKeyboardButton('Delete',callback_data=f"hexa_delete_{user_id}")]])
+   
 
 # ==== Type Pokemon =====
 @app.on_message(filters.command(['type', 'type@inhumanDexBot']))
