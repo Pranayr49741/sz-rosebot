@@ -168,7 +168,7 @@ def types(app, message):
     app.send_message(
         chat_id=message.chat.id,
         text="List of types of Pokemons:",
-        reply_markup=InlineKeyboardMarkup(ptype_buttons)
+        reply_markup=ptype_buttons
     )
 
 # ===== Types Callback ====
@@ -207,7 +207,7 @@ def button(client: app, callback_query: CallbackQuery):
 @languageCB
 async def commands_callbacc(client, CallbackQuery, _):
     await CallbackQuery.message.edit(
-        text= "",
+        text= "List of types of Pokemons: ",
         reply_markup=ptype_buttons,
         disable_web_page_preview=True,
     )
