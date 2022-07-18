@@ -204,12 +204,11 @@ def button(client: app, callback_query: CallbackQuery):
 
 @app.on_callback_query(filters.regex("types_back"))
 @languageCB
-def button2(client: app, callback_query: CallbackQuery):
-    text ,keyboard = await help_parser(CallbackQuery.from_user.mention)
-    await app.send_message(
-        callback_query.message.edit_text(
-                "List of types of Pokemons:",
-                reply_markup=InlineKeyboardMarkup(ptype_buttons(user_id))
+async def commands_callbacc(client, CallbackQuery, _):
+    await CallbackQuery.message.edit(
+        text= "Choose Your languages:",
+        reply_markup=ptype_buttons,
+        disable_web_page_preview=True,
     )
     
     
