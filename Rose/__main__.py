@@ -396,7 +396,8 @@ def all_infos(app, call):
     func.bot_action(app, message, text, markup)
 
 
-@app.on_callback_query(filters.create(lambda _, query: 'moveset' in query.data))
+@app.on_callback_query(filters.regex("moveset"))
+@languageCB
 def moveset(app, call):
     pkmn = re.split('/', call.data)[1]
     form = re.split('/', call.data)[2]
