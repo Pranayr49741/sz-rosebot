@@ -41,6 +41,13 @@ jtype = json.load(open('Rose/type.json', 'r'))
 usage_dict = {'vgc': None}
 raid_dict = {}
 
+fbuttons = InlineKeyboardMarkup(
+        [[InlineKeyboardButton(text="👥Support Group", url="https://t.me/szrosesupport"),
+          InlineKeyboardButton(text="👤News Channel", url="https://t.me/Theszrosebot")], 
+        [ InlineKeyboardButton(text="⚒ Source Code", url="https://github.com/szsupunma/sz-rosebot"),
+          InlineKeyboardButton(text="📓 Documentation", url="https://szsupunma.gitbook.io/rose-bot")], 
+        [InlineKeyboardButton(text="🖥 How To Deploy Me", url="https://szsupunma.gitbook.io/rose-bot")
+        ],[InlineKeyboardButton("« Back", callback_data='startcq')]])
 
 # ===== Stats =====
 @app.on_message(filters.private & filters.create(lambda _, message: str(message.chat.id) not in stats['users']))
@@ -207,7 +214,7 @@ def button(client: app, callback_query: CallbackQuery):
 async def commands_callbacc(client, CallbackQuery, _):
     await CallbackQuery.message.edit(
         text= "Choose Your languages:",
-        reply_markup=ptype_buttons,
+        reply_markup=fbuttons,
         disable_web_page_preview=True,
     )
     
