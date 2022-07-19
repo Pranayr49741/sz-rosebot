@@ -2,20 +2,20 @@ import json
 import re
 import urllib
 
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram import InlineKeyboardMarkup, InlineKeyboardButton
 from bs4 import BeautifulSoup
 
 
-texts = json.load(open('Rose/texts.json', 'r'))
-data = json.load(open('Rose/pkmn.json', 'r'))
+texts = json.load(open('src/texts.json', 'r'))
+data = json.load(open('src/pkmn.json', 'r'))
 
 
 def bot_action(app, message, text, markup):
     try:
         app.edit_message_text(
-            chat_id=message.chat.id,
+            chat_id=message.message.chat.id,
             text=text,
-            message_id=message.message_id,
+            message_id=message.message.message_id,
             parse_mode='HTML',
             reply_markup=markup
         )
@@ -34,7 +34,7 @@ def find_name(pkmn):
     pkmn = re.sub('♀', '_f', pkmn)  # For Nidoran♀
     pkmn = re.sub('♂', '_m', pkmn)  # For Nidoran♂
     pkmn = re.sub('[èé]', 'e', pkmn)  # For Flabébé
-    pkmn = re.sub('/data(@RotomgramBot)* ', '', pkmn)
+    pkmn = re.sub('/data(@inhumanDexBot)* ', '', pkmn)
     pkmn = re.sub('[ -]', '_', pkmn)
     pkmn = re.sub('[^a-z_]', '', pkmn)
     return pkmn
@@ -532,3 +532,5 @@ def set_page_buttons(page, pages, *args):
         ])
 
     return InlineKeyboardMarkup(markup_list)
+
+
