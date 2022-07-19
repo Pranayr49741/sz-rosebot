@@ -224,7 +224,7 @@ def pkmn_search(app, message):
     [
         InlineKeyboardButton(
             text='⚔️ Moveset',
-            callback_data=moveset
+            callback_data=f"moveset"
         ),
         InlineKeyboardButton(
             text='🏠 Locations',
