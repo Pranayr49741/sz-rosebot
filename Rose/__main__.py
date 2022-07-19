@@ -185,7 +185,7 @@ async def commands_callbacc(client, CallbackQuery, _):
     
     
 # ===== Data command
-@app.on_message(Filters.command(['data', 'data@inhumanDexBot']))
+@app.on_message(filters.command(['data', 'data@inhumanDexBot']))
 def pkmn_search(app, message):
     try:
         if message.text == '/data' or message.text == '/data@inhumanDexBot':
