@@ -224,7 +224,7 @@ def pkmn_search(app, message):
     [
         InlineKeyboardButton(
             text='⚔️ Moveset',
-            callback_data='moveset/'+pkmn+'/'+form
+            callback_data=moveset
         ),
         InlineKeyboardButton(
             text='🏠 Locations',
@@ -309,8 +309,7 @@ def all_infos(app, call):
 @app.on_callback_query(filters.regex("moveset"))
 @languageCB
 async def commands_callbacc(client, CallbackQuery, _):
-    pkmn = re.split('/', call.data)[1]
-    form = re.split('/', call.data)[2]
+    
     if len(re.split('/', call.data)) == 4:
         page = int(re.split('/', call.data)[3])
     else:
