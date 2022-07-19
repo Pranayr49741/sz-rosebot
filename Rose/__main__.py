@@ -184,8 +184,7 @@ async def commands_callbacc(client, CallbackQuery, _):
     )
     
     
-# ===== Data command =====
-@app.on_callback_query(filters.create(lambda _, query: 'basic_infos' in query.data))
+# ===== Data command
 @app.on_message(Filters.command(['data', 'data@inhumanDexBot']))
 def pkmn_search(app, message):
     try:
