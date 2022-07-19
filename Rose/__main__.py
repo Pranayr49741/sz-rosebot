@@ -308,8 +308,9 @@ def all_infos(app, call):
 
 @app.on_callback_query(filters.regex("moveset"))
 @languageCB
-async def commands_callbacc(client, CallbackQuery, _):
-    
+async def commands_callbacc(client, CallbackQuery, app, call):
+    pkmn = re.split('/', call.data)[1]
+    form = re.split('/', call.data)[2]
     if len(re.split('/', call.data)) == 4:
         page = int(re.split('/', call.data)[3])
     else:
