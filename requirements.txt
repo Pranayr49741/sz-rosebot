@@ -17,8 +17,11 @@ EmojiCaptcha==0.1.2
 captcha==0.4 
 googletrans==3.1.0a0
 telegraph==2.1.0
-pyrogram==1.4.16
 pyyaml==5.4
 bs4
 telethon
 python-telegram-bot==12.8
+Pyrogram==2.0.30
+pokepy==0.4.0
+urllib3==1.26.9
+requests==2.28.1
