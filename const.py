@@ -4,8 +4,8 @@ import os
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 SESSION_NAME = 'Rotogram'
 BOT_USERNAME = 'rotogrambot'
-PKMN_LIST_PATH = f'{PROJECT_ROOT}/src/pokemon.txt'
-USER_SETTINGS_PATH = f'{PROJECT_ROOT}/src/user_settings.json'
+PKMN_LIST_PATH = f'{PROJECT_ROOT}/Rose/pokemon.txt'
+USER_SETTINGS_PATH = f'{PROJECT_ROOT}/Rose/user_settings.json'
 with open(PKMN_LIST_PATH) as f:
     POKEMON_LIST = f.read()
 
