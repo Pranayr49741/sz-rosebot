@@ -249,7 +249,7 @@ def expand(client, query):
     get more/less data (such as Pokédex and other game data)'''
 
     user_id = query.from_user.id
-    #message_id = query.message_id
+    message_id = query.message.id
     #if str(user_id) not in user_settings:
         #create_user_settings(user_id)
 
@@ -268,7 +268,7 @@ def expand(client, query):
 
     #client.answer_callback_query(query.id)  # Delete the loading circle
     app.edit_message_text(
-        #chat_id=message.chat.id,
+        chat_id=message.chat.id,
         text=datapage.get_datapage_text(pokemon, is_expanded),
         reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
     )
