@@ -308,9 +308,10 @@ def all_infos(app, call):
     func.bot_action(app, call, text, markup)
 
 
-@app.on_callback_query(filters.regex("moveset"))
+
+@app.on_callback_query(filters.create(lambda _, query: 'moveset' in query.data)
 @languageCB
-async def commands_callbacc(client, CallbackQuery, app, call):
+async def commands_callbacc(app, call):
     pkmn = re.split('/', call.data)[1]
     form = re.split('/', call.data)[2]
     if len(re.split('/', call.data)) == 4:
