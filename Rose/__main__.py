@@ -249,7 +249,7 @@ async def expand(client, query):
     get more/less data (such as Pokédex and other game data)'''
 
     user_id = query.from_user.id
-    message_id = query.message_id
+    #message_id = query.message_id
     #if str(user_id) not in user_settings:
         #create_user_settings(user_id)
 
@@ -260,11 +260,11 @@ async def expand(client, query):
     pokemon = pokemon_client().get_pokemon(pokemon_name).pop()
 
     # Page is created by a link
-    if message_id is None:
-        return await query.message.edit_text(
-            text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
-            reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
-        )
+    #if message_id is None:
+        #return await query.message.edit_text(
+            #text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
+            #reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
+        #)
 
     await client.answer_callback_query(query.id)  # Delete the loading circle
     await client.edit_message.text(
