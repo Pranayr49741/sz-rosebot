@@ -249,9 +249,9 @@ async def expand(client, query):
     get more/less data (such as Pokédex and other game data)'''
 
     user_id = query.from_user.id
-    message_id = query.inline_message_id
-    if str(user_id) not in user_settings:
-        create_user_settings(user_id)
+    message_id = query.message_id
+    #if str(user_id) not in user_settings:
+        #create_user_settings(user_id)
 
     # first value (underscore) is useless, it's just used to call expand()
     _, is_expanded, pokemon_name = re.split('/', query.data)
