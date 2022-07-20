@@ -188,63 +188,28 @@ async def commands_callbacc(client, CallbackQuery, _):
     
 # ===== Data command
 @app.on_message(filters.command(['data', 'data@inhumanDexBot']))
-def pkmn_search(app, message):
-    try:
-        if message.text == '/data' or message.text == '/data@inhumanDexBot':
-            app.send_message(message.chat.id, texts['error1'], parse_mode='HTML')
-            return None
-        pkmn = func.find_name(message.text)
-        result = func.check_name(pkmn, data)
+async def pkmn_search(client, app, message):
+    '''Create page of chosen Pokémon'''
 
-        if type(result) == str:
-            app.send_message(message.chat.id, result)
-            return None
-        elif type(result) == list:
-            best_matches(app, message, result)
-            return None
-        else:
-            pkmn = result['pkmn']
-            form = result['form']
-    except AttributeError:
-        pkmn = re.split('/', message.data)[1]
-        form = re.split('/', message.data)[2]
+    user_id = message.from_user.id
+    result_id = message.result_id
+    message_id = message.message_id
+    pokemon_name = user_query_results[user_id][result_id]
+    if str(user_id) not in user_settings:
+        create_user_settings(user_id)
 
+    if shiny.is_shiny_keyword(pokemon_name):
+        await shiny.load_shiny_page(app, inline_query, is_shiny_unlocked(user_id))
+        return
 
-    if pkmn in form:
-        text = func.set_message(data[pkmn][form], reduced=True)
-    else:
-        base_form = re.sub('_', ' ', pkmn.title())
-        name = base_form + ' (' + data[pkmn][form]['name'] + ')'
-        text = func.set_message(data[pkmn][form], name, reduced=True)
+    pokemon = pokemon_client().get_pokemon(pokemon_name).pop()
+    is_expanded = False
 
-    markup_list = [[
-        InlineKeyboardButton(
-            text='➕ Expand',
-            callback_data='all_infos/'+pkmn+'/'+form
-        )
-    ],
-    [
-        InlineKeyboardButton(
-            text='⚔️ Moveset',
-            callback_data=f"moveset"
-        ),
-        InlineKeyboardButton(
-            text='🏠 Locations',
-            callback_data='locations/'+pkmn+'/'+form
-        )
-    ]]
-    for alt_form in data[pkmn]:
-        if alt_form != form:
-            markup_list.append([
-                InlineKeyboardButton(
-                    text=data[pkmn][alt_form]['name'],
-                    callback_data='basic_infos/'+pkmn+'/'+alt_form
-                )
-            ])
-    markup = InlineKeyboardMarkup(markup_list)
-
-    func.bot_action(app, message, text, markup)
-
+    await client.edit_message_text(
+        message.message_id=message_id,
+        text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
+        reply_markup=markup.datapage_markup(pokemon_name)
+    )
 
 def best_matches(app, message, result):
     text = texts['results']
@@ -310,7 +275,7 @@ def all_infos(app, call):
 
 
 
-@app.on_callback_query(filters.create(lambda _, query: 'moveset' in query.data))
+@app.on_callback_query(filters.command(['moveset','moveset@inhumambot']))
 def moveset(app, call):
     pkmn = re.split('/', call.data)[1]
     form = re.split('/', call.data)[2]
