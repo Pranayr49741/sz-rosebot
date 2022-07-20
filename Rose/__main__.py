@@ -190,7 +190,7 @@ async def commands_callbacc(client, CallbackQuery, _):
 @app.on_message(filters.command(['data', 'data@inhumanDexBot']))
 async def pkmn_search(client, app, message):
     '''Create page of chosen Pokémon'''
-    text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
+    text=" hiii" #datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
     reply_markup=markup.datapage_markup(pokemon_name)
     user_id = message.from_user.id
     result_id = message.result_id
