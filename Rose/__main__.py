@@ -20,8 +20,6 @@ from Rose.mongo.chatsdb import *
 from Rose.plugins.fsub import ForceSub
 import random
 import json
-import re
-from pokepy import V2Client as pokemon_client
 from telegram.ext import (
     CallbackContext,
     CallbackQueryHandler
@@ -34,13 +32,7 @@ import functions as func
 import raid_dynamax as raid
 
 
-import data
-import inline
-import datapage
-import moves
-import markup
-import shiny
-import const
+
 
 texts = json.load(open('Rose/texts.json', 'r'))
 data = json.load(open('Rose/pkmn.json', 'r'))
@@ -100,55 +92,8 @@ def get_stats(app, message):
             text=text
         )
 
-@app.on_inline_query()
-async def inline_search(client, inline_query):
-    '''Search Pokémon via inline mode.
-    It shows one or more query results based on the input.
-    e.g.:
-    @rotogrambot rotom'''
-
-    user_id = inline_query.from_user.id
-    query_message = inline_query.query
-    if str(user_id) not in user_settings:
-        create_user_settings(user_id)
-
-    if not inline.has_minimum_characters(query_message):
-        await inline.show_help_button(inline_query)
-        return
-
-    match_list = inline.get_matching_pokemon(query_message.lower())
-    query_results = inline.get_query_results(match_list, is_shiny_setted(user_id))
-    store_user_query_results(query_results, match_list, user_id)
-
-    await inline_query.answer(
-        results=query_results,
-        cache_time=const.CACHE_TIME
-    )
 
 
-@app.on_chosen_inline_result()
-async def create_page(client, inline_query):
-    '''Create page of chosen Pokémon'''
-
-    user_id = inline_query.from_user.id
-    result_id = inline_query.result_id
-    message_id = inline_query.inline_message_id
-    pokemon_name = user_query_results[user_id][result_id]
-    if str(user_id) not in user_settings:
-        create_user_settings(user_id)
-
-    if shiny.is_shiny_keyword(pokemon_name):
-        await shiny.load_shiny_page(app, inline_query, is_shiny_unlocked(user_id))
-        return
-
-    pokemon = pokemon_client().get_pokemon(pokemon_name).pop()
-    is_expanded = False
-
-    await client.edit_inline_text(
-        inline_message_id=message_id,
-        text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
-        reply_markup=markup.datapage_markup(pokemon_name)
-    )
 
 # ==== Typew List =====
 ptype_buttons=InlineKeyboardMarkup(
