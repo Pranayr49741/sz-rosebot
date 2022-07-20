@@ -177,7 +177,7 @@ async def paste(content: str):
     return BASE + resp["message"]
 
 
-@app.on_message(filters.command("paste") & ~filters.edited)
+@app.on_message(filters.command("paste"))
 async def paste_func(_, message: Message):
     if not message.reply_to_message:
         return await message.reply_text("Reply To A Message With `/paste`")
