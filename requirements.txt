@@ -24,3 +24,4 @@ Pyrogram==1.4.16
 pokepy==0.4.0
 urllib3==1.26.9
 requests==2.10.0
+pokepy
