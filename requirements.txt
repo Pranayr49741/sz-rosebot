@@ -20,7 +20,7 @@ pyyaml==5.4
 bs4
 telethon
 python-telegram-bot==12.8
-Pyrogram==2.0.30
+Pyrogram==1.4.16
 pokepy==0.4.0
 urllib3==1.26.9
 requests==2.10.0
