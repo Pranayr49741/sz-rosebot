@@ -259,22 +259,21 @@ def expand(client, query):
 
     pokemon = pokemon_client().get_pokemon(pokemon_name).pop()
      
-    text=datapage.get_datapage_text(pokemon, is_expanded),
-    reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
+    text_data=datapage.get_datapage_text(pokemon, is_expanded),
+    reply_markdown=markup.datapage_markup(pokemon_name, is_expanded)
 
     # Page is created by a link
-    #if message_id is None:
-        #return await query.message.edit_text(
-            #text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
-            #reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
-        #)
-    func.bot_action(client, query, text, reply_markup)
-    #client.answer_callback_query(query.id)  # Delete the loading circle
-    #app.edit_message_text(
-        #chat_id = chat_instance.id,
-        #text=datapage.get_datapage_text(pokemon, is_expanded),
-        #reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
-    #)
+    if message_id is None:
+        return await query.message.edit_text(
+            text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
+            reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
+        )
+    #func.bot_action(client, query, text, reply_markup)
+    client.answer_callback_query(query.id)  # Delete the loading circle
+    app.edit_message_text(
+        text = text_data,
+        reply_mark = reply_markdown
+    )
 
 def best_matches(app, message, result):
     text = texts['results']
