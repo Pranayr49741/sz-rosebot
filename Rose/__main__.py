@@ -193,7 +193,7 @@ async def pkmn_search(client, app, message):
 
     user_id = message.from_user.id
     result_id = message.result_id
-    message = message_id
+    message_id = message.message_id
     pokemon_name = user_query_results[user_id][result_id]
     if str(user_id) not in user_settings:
         create_user_settings(user_id)
@@ -206,7 +206,7 @@ async def pkmn_search(client, app, message):
     is_expanded = False
 
     await client.edit_message_text(
-        message_id=message,
+        message.message_id=message_id,
         text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
         reply_markup=markup.datapage_markup(pokemon_name)
     )
