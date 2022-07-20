@@ -203,7 +203,7 @@ def pkmn_search(client, app, message):
 
  
 
-    await client.send_message(
+    app.send_message(
         message.message_id == message_id,
         text=datapage.get_datapage_text(pokemon, is_expanded),
         reply_markup=markup.datapage_markup(pokemon_name)
