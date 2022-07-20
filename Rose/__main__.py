@@ -268,7 +268,7 @@ def expand(client, query):
 
     #client.answer_callback_query(query.id)  # Delete the loading circle
     app.edit_message_text(
-        chat_id=message.chat.id,
+        #chat_id=message.chat.id,
         text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
         reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
     )
