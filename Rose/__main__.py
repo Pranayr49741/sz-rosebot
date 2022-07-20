@@ -232,17 +232,17 @@ def pkmn_search(app, message):
     #message_id = message.message_id
     pokemon_name = func.find_name(message.text)
    
-    text=datapage.get_datapage_text(pokemon, is_expanded),
-    reply_markup=markup.datapage_markup(pokemon_name)
+    #text=datapage.get_datapage_text(pokemon, is_expanded),
+    #reply_markup=markup.datapage_markup(pokemon_name)
 
     pokemon = pokemon_client().get_pokemon(pokemon_name).pop()
     is_expanded = False
-    func.bot_action(app, message,text, reply_markup)
-    #app.send_message(
-        #chat_id = message.chat.id,
-        #text=datapage.get_datapage_text(pokemon, is_expanded),
-        #reply_markup=markup.datapage_markup(pokemon_name)
-    #)
+    #func.bot_action(app, message,text, reply_markup)
+    app.send_message(
+        chat_id = message.chat.id,
+        text=datapage.get_datapage_text(pokemon, is_expanded),
+        reply_markup=markup.datapage_markup(pokemon_name)
+    )
 
 
 @app.on_callback_query(filters.create(lambda _, __, query: 'infos' in query.data))
