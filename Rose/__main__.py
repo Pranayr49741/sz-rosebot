@@ -264,8 +264,8 @@ def expand(client, query):
 
     # Page is created by a link
     if message_id is None:
-        return await query.message.edit_text(
-            text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
+        return query.message.edit_text(
+            text=datapage.get_datapage_text(pokemon, is_expanded),
             reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
         )
     #func.bot_action(client, query, text, reply_markup)
