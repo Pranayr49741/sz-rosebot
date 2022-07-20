@@ -238,6 +238,36 @@ def pkmn_search(app, message):
         reply_markup=markup.datapage_markup(pokemon_name)
     )
 
+
+@app.on_callback_query(filters.create(lambda _, __, query: 'infos' in query.data))
+async def expand(client, query):
+    '''Expand/Reduce button:
+    get more/less data (such as Pokédex and other game data)'''
+
+    user_id = query.from_user.id
+    message_id = query.inline_message_id
+    if str(user_id) not in user_settings:
+        create_user_settings(user_id)
+
+    # first value (underscore) is useless, it's just used to call expand()
+    _, is_expanded, pokemon_name = re.split('/', query.data)
+    is_expanded = int(is_expanded)
+
+    pokemon = pokemon_client().get_pokemon(pokemon_name).pop()
+
+    # Page is created by a link
+    if message_id is None:
+        return await query.message.edit_text(
+            text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
+            reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
+        )
+
+    await client.answer_callback_query(query.id)  # Delete the loading circle
+    await client.edit_message.text(
+        chat_id=message.chat.id,
+        text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
+        reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
+
 def best_matches(app, message, result):
     text = texts['results']
     emoji_list = ['1️⃣', '2️⃣', '3️⃣']
