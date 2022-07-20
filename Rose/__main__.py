@@ -268,12 +268,12 @@ def expand(client, query):
             text=datapage.get_datapage_text(pokemon, is_expanded),
             reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
         )
-    #func.bot_action(client, query, text, reply_markup)
+    func.bot_action(client, query, text, reply_markup)
     client.answer_callback_query(query.id)  # Delete the loading circle
-    app.edit_message_text(
-        text = text_data,
-        reply_mark = reply_markdown
-    )
+    #app.edit_message_text(
+        #text = text_data,
+        #reply_mark = reply_markdown
+    #)
 
 def best_matches(app, message, result):
     text = texts['results']
