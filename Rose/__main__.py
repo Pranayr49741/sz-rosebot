@@ -232,10 +232,8 @@ def pkmn_search(app, message):
     pokemon = pokemon_client().get_pokemon(pokemon_name).pop()
     is_expanded = False
 
- 
-
     app.send_message(
-        chat_id = message.chat_id
+        chat_id = message.chat_id,
         text=datapage.get_datapage_text(pokemon, is_expanded),
         reply_markup=markup.datapage_markup(pokemon_name)
     )
