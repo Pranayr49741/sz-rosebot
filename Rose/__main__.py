@@ -244,7 +244,7 @@ def pkmn_search(app, message):
 
 
 @app.on_callback_query(filters.create(lambda _, __, query: 'infos' in query.data))
-async def expand(client, query):
+def expand(client, query):
     '''Expand/Reduce button:
     get more/less data (such as Pokédex and other game data)'''
 
@@ -266,8 +266,8 @@ async def expand(client, query):
             #reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
         #)
 
-    await client.answer_callback_query(query.id)  # Delete the loading circle
-    await client.edit_message.text(
+    client.answer_callback_query(query.id)  # Delete the loading circle
+    app.edit_message(
         chat_id=message.chat.id,
         text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
         reply_markup=markup.datapage_markup(pokemon_name, is_expanded)
