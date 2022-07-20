@@ -310,7 +310,6 @@ def all_infos(app, call):
 
 
 @app.on_callback_query(filters.create(lambda _, query: 'moveset' in query.data)
-@languageCB
 def moveset(app, call):
     pkmn = re.split('/', call.data)[1]
     form = re.split('/', call.data)[2]
