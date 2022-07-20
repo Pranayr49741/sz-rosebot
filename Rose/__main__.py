@@ -188,31 +188,26 @@ async def commands_callbacc(client, CallbackQuery, _):
     
 # ===== Data command
 @app.on_message(filters.command(['data', 'data@inhumanDexBot']))
-async def pkmn_search(client, app, message):
-    '''Create page of chosen Pokémon'''
-    text=" hiii" #datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
+def pkmn_search(client, app, message):
+ 
+    #text=" hiii" #datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
     reply_markup=markup.datapage_markup(pokemon_name)
     user_id = message.from_user.id
     result_id = message.result_id
     message_id = message.message_id
-    pokemon_name = user_query_results[user_id][result_id]
-    if str(user_id) not in user_settings:
-        create_user_settings(user_id)
-
-    if shiny.is_shiny_keyword(pokemon_name):
-        await shiny.load_shiny_page(app, inline_query, is_shiny_unlocked(user_id))
-        return
+    pokemon_name = func.find_name(message.text)
+   
 
     pokemon = pokemon_client().get_pokemon(pokemon_name).pop()
     is_expanded = False
 
-    func.bot_action(app, message, text, reply_markup)
+ 
 
-  #  await client.send_message (
-#        chat_id = message.chat.id,
-#        message.message_id == message_id,
-#        text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
-#        reply_markup=markup.datapage_markup(pokemon_name))
+     await client.send_message (
+         message.message_id == message_id,
+         text=datapage.get_datapage_text(pokemon, is_expanded),
+         reply_markup=markup.datapage_markup(pokemon_name)
+         )
 
 def best_matches(app, message, result):
     text = texts['results']
