@@ -206,7 +206,7 @@ async def pkmn_search(client, app, message):
     is_expanded = False
 
     await client.edit_message_text(
-        message.message_id=message_id,
+        message.message_id == message_id,
         text=datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
         reply_markup=markup.datapage_markup(pokemon_name)
     )
