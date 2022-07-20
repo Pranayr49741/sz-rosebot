@@ -189,12 +189,40 @@ async def commands_callbacc(client, CallbackQuery, _):
 # ===== Data command
 @app.on_message(filters.command(['data', 'data@inhumanDexBot']))
 def pkmn_search(client, app, message):
- 
+def pkmn_search(app, message):
+    try:
+        if message.text == '/data' or message.text == '/data@inhumanDexBot':
+            app.send_message(message.chat.id, texts['error1'], parse_mode='HTML')
+            return None
+        pkmn = func.find_name(message.text)
+        result = func.check_name(pkmn, data)
+
+        if type(result) == str:
+            app.send_message(message.chat.id, result)
+            return None
+        elif type(result) == list:
+            best_matches(app, message, result)
+            return None
+        else:
+            pkmn = result['pkmn']
+            form = result['form']
+    except AttributeError:
+        pkmn = re.split('/', message.data)[1]
+        form = re.split('/', message.data)[2]
+
+
+    if pkmn in form:
+        text = func.set_message(data[pkmn][form], reduced=True)
+    else:
+        base_form = re.sub('_', ' ', pkmn.title())
+        name = base_form + ' (' + data[pkmn][form]['name'] + ')'
+        text = func.set_message(data[pkmn][form], name, reduced=True)    
+
     #text=" hiii" #datapage.get_datapage_text(pokemon, is_expanded, is_shiny_setted(user_id)),
-    reply_markup=markup.datapage_markup(pokemon_name)
-    user_id = message.from_user.id
-    result_id = message.result_id
-    message_id = message.message_id
+    #reply_markup=markup.datapage_markup(pokemon_name)
+    #user_id = message.from_user.id
+    #result_id = message.result_id
+    #message_id = message.message_id
     pokemon_name = func.find_name(message.text)
    
 
@@ -204,7 +232,7 @@ def pkmn_search(client, app, message):
  
 
     app.send_message(
-        message.message_id == message_id,
+       
         text=datapage.get_datapage_text(pokemon, is_expanded),
         reply_markup=markup.datapage_markup(pokemon_name)
     )
