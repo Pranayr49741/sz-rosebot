@@ -19,6 +19,7 @@ from Rose.mongo.restart import *
 from Rose.mongo.chatsdb import *
 from Rose.plugins.fsub import ForceSub
 import random
+from pokepy import V2Client as pokemon_client
 import json
 from telegram.ext import (
     CallbackContext,
