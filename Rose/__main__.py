@@ -249,7 +249,7 @@ def expand(client, query):
     get more/less data (such as Pokédex and other game data)'''
 
     user_id = query.from_user.id
-    message_id = query.message_id
+    message_id = query.id
     #if str(user_id) not in user_settings:
         #create_user_settings(user_id)
 
