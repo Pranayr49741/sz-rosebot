@@ -21,6 +21,7 @@ from Rose.plugins.fsub import ForceSub
 import random
 import datapage
 import data 
+import markup
 from pokepy import V2Client as pokemon_client
 import json
 from telegram.ext import (
